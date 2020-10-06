@@ -940,14 +940,25 @@ if any(contains(parameters.metrics,{'spatial_metrics','all'})) && ~any(contains(
         if cell_metrics.general.cellCount == size(firingRateMap.map,2) && length(firingRateMap.x_bins) == size(firingRateMap.map{1},1)
             disp(['  Loaded ' firingRateMapName ' succesfully']);
             cell_metrics.firingRateMaps.(firingRateMapName) = firingRateMap.map;
+            % Another option to resolve x/y/z dimensions would be to carry
+            % forward all fields (except .map) by default. -- TH
             if isfield(firingRateMap,'x_bins')
                 cell_metrics.general.firingRateMaps.(firingRateMapName).x_bins = firingRateMap.x_bins;
             end
             if isfield(firingRateMap,'x_label')
                 cell_metrics.general.firingRateMaps.(firingRateMapName).x_label = firingRateMap.x_label;
             end
+            if isfield(firingRateMap,'y_bins')
+                cell_metrics.general.firingRateMaps.(firingRateMapName).y_bins = firingRateMap.y_bins;
+            end
+            if isfield(firingRateMap,'y_label')
+                cell_metrics.general.firingRateMaps.(firingRateMapName).y_label = firingRateMap.y_label;
+            end
             if isfield(firingRateMap,'boundaries')
                 cell_metrics.general.firingRateMaps.(firingRateMapName).boundaries = firingRateMap.boundaries;
+            end
+            if isfield(firingRateMap,'detectorinfo')
+                cell_metrics.general.firingRateMaps.(firingRateMapName).detectorinfo = firingRateMap.detectorinfo;
             end
             if isfield(firingRateMap,'labels')
                 cell_metrics.general.firingRateMaps.(firingRateMapName).labels = firingRateMap.labels;

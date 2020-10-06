@@ -219,7 +219,7 @@ end
 
 % Importing channel tags from sessionInfo
 if isfield(sessionInfo,'badchannels')
-    if isfield(session.channelTags,'Bad')
+    if isfield(session,'channelTags') && isfield(session.channelTags,'Bad')
         session.channelTags.Bad.channels = unique([session.channelTags.Bad.channels,sessionInfo.badchannels+1]);
     else
         session.channelTags.Bad.channels = sessionInfo.badchannels+1;
